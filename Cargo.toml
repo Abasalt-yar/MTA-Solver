@@ -1,0 +1,35 @@
+[package]
+name = "mta_solver"
+version = "0.3.0"
+edition = "2021"
+authors = ["Abasalt_Yar"]
+description = "MTA Solver"
+build = "build.rs"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+colored = "2.0.4"
+sysinfo = "0.29.10"
+reqwest = { version = "0.11.22", features = ["stream", "json","blocking"] }
+tokio = { version = "1.33.0", features = ["full"] }
+winreg = "0.51.0"
+scraper = "0.17.1"
+xml = "0.8.10"
+
+[build-dependencies]
+winres = "0.1.12"
+
+[package.metadata.winres]
+ProductName = "MTA Solver"
+FileDescription = "Solve MTA Issues"
+ProductVersion = "0.3.0"
+
+
+[profile.release]
+opt-level = 'z'     # Optimize for size
+lto = true          # Enable link-time optimization
+codegen-units = 1   # Reduce number of codegen units to increase optimizations
+panic = 'abort'     # Abort on panic
+strip = true        # Strip symbols from binary*
